@@ -1,24 +1,26 @@
 # SmartQueue
 
-Система электронной очереди.
+Система электронной очереди для сервисного центра.
 
-**Лабораторная работа №1**
+**Лабораторная работа №2**
 Дисциплина: Методы и средства проектирования информационных систем
-Студент: Васильева А.С., гр. ИСТбд-31
+Студент: Васильева А.С., гр. ИСТбд-41
 
 ## Стек
 
-- .NET 8 (ASP.NET Core)
+- .NET 8 (ASP.NET Core, Razor Pages)
 - Docker
+
+## Реализованные страницы
+
+- `/` — главная
+- `/queue` — список очереди
+- `/tickets/new` — создание талона
+- `/tickets/{id}` — карточка талона
+- `/access-denied` — отказ в доступе
 
 ## Образ
 
-Опубликован в GitVerse: `gitverse.ru/leiasqq/mispisit-lab1:0.0.1`
+Опубликован в GitVerse: `gitverse.ru/leiasqq/mispisit-lab1:0.0.2`
 
 ## Запуск
-
-```bash
-docker pull gitverse.ru/leiasqq/mispisit-lab1:0.0.1
-docker run --rm -p 8080:8080 gitverse.ru/leiasqq/mispisit-lab1:0.0.1
-
-После запуска страница открывается по адресу http://localhost:8080.

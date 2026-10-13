@@ -1,0 +1,25 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Главная";
+}
+
+<h2>Добро пожаловать в SmartQueue</h2>
+<p>Система электронной очереди для сервисного центра «УльяновскСервис».</p>
+
+<div class="card">
+    <h3>Основные действия</h3>
+    <p>
+        <a href="/tickets/new" class="btn btn-green">Получить новый талон</a>
+        &nbsp;
+        <a href="/queue" class="btn">Посмотреть очередь</a>
+    </p>
+    <p style="margin-top: 18px;">
+        <a href="/access-denied" class="btn btn-gray" style="font-size: 14px;">
+            Вызвать следующего клиента
+        </a>
+    </p>
+    <p style="font-size: 13px; color: #888; margin-top: 8px;">
+        
+    </p>
+</div>

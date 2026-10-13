@@ -1,0 +1,28 @@
+@page "/tickets/{id:int}"
+@model SmartQueue.Pages.Tickets.DetailsModel
+@{
+    ViewData["Title"] = "Талон";
+}
+
+@if (Model.Ticket == null)
+{
+    <div class="error">
+        <h2>Талон не найден</h2>
+        <p>Возможно, он был удалён или ещё не создан.</p>
+    </div>
+    <p style="margin-top: 25px;">
+        <a href="/queue" class="btn btn-gray">← Назад к очереди</a>
+    </p>
+}
+else
+{
+    <h2>Талон @Model.Ticket.Number</h2>
+    <div class="card">
+        <p><b>Услуга:</b> @Model.Ticket.ServiceName</p>
+        <p><b>Статус:</b> @Model.Ticket.Status</p>
+        <p><b>Создан:</b> @Model.Ticket.CreatedAt.ToString("dd.MM.yyyy HH:mm:ss")</p>
+    </div>
+    <p>
+        <a href="/queue" class="btn btn-gray">← Назад к очереди</a>
+    </p>
+}

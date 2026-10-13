@@ -1,0 +1,41 @@
+@page
+@model SmartQueue.Pages.Queue.IndexModel
+@{
+    ViewData["Title"] = "Очередь";
+}
+
+<h2>Текущая очередь</h2>
+<p>Всего талонов: <b>@Model.Tickets.Count</b></p>
+
+@if (Model.Tickets.Count == 0)
+{
+    <div class="card">
+        <p>Очередь пуста. <a href="/tickets/new">Получите первый талон</a>.</p>
+    </div>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Номер</th>
+                <th>Услуга</th>
+                <th>Статус</th>
+                <th>Создан</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var t in Model.Tickets)
+            {
+                <tr>
+                    <td><b>@t.Number</b></td>
+                    <td>@t.ServiceName</td>
+                    <td>@t.Status</td>
+                    <td>@t.CreatedAt.ToString("HH:mm:ss")</td>
+                    <td><a href="/tickets/@t.Id" class="btn" style="padding: 6px 14px; font-size: 14px;">Открыть</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

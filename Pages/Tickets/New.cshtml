@@ -1,0 +1,32 @@
+@page
+@model SmartQueue.Pages.Tickets.NewModel
+@{
+    ViewData["Title"] = "Новый талон";
+}
+
+<h2>Получить талон</h2>
+<p>Выберите услугу и нажмите кнопку:</p>
+
+<form method="post">
+    <div class="card">
+        <label><b>Услуга:</b></label><br />
+        <select name="serviceName">
+            <option value="Оформление документов">Оформление документов</option>
+            <option value="Получение справки">Получение справки</option>
+            <option value="Консультация специалиста">Консультация специалиста</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-green">Получить талон</button>
+</form>
+
+@if (Model.CreatedTicket != null)
+{
+    <div class="card card-success">
+        <h3>Ваш талон: @Model.CreatedTicket.Number</h3>
+        <p><b>Услуга:</b> @Model.CreatedTicket.ServiceName</p>
+        <p>Ожидайте вызова на табло.</p>
+        <p>
+            <a href="/queue" class="btn">Посмотреть очередь</a>
+        </p>
+    </div>
+}
