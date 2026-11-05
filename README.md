@@ -53,4 +53,4 @@
 ## Ссылки
 
 - **Репозиторий:** https://github.com/le1asqq/mispisit-lab
-- **Образы (GHCR):** https://github.com/le1asqq?tab=packages
+- **Образы:** https://github.com/le1asqq?tab=packages
