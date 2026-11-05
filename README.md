@@ -22,25 +22,20 @@ git clone -b lab3 https://github.com/le1asqq/mispisit-lab.git
 cd mispisit-lab
 docker compose up -d
 
-Откройте http://localhost:8080. После запуска список пустой. Создайте новый талон через форму — он сохранится в базе. Для проверки сохранности выполните docker compose down, затем снова docker compose up -d — запись должна остаться на месте.
+### ЛР2 (версия 0.0.2) — данные в памяти
 
-ЛР2 (версия 0.0.2) — данные в памяти
 Запускается одной командой без базы данных.
 
-bash
+```bash
 docker pull ghcr.io/le1asqq/mispisit-lab1:0.0.2
 docker run --rm -p 8080:8080 ghcr.io/le1asqq/mispisit-lab1:0.0.2
 Откройте http://localhost:8080. Доступны три функции: получение талона, просмотр очереди, отказ в доступе.
 
-ЛР1 (версия 0.0.1) — первая страница
+### ЛР1 (версия 0.0.1) — первая страница
+
 Запускается одной командой без базы данных.
 
-bash
+```bash
 docker pull ghcr.io/le1asqq/mispisit-lab1:0.0.1
 docker run --rm -p 8080:8080 ghcr.io/le1asqq/mispisit-lab1:0.0.1
 Откройте http://localhost:8080. На странице видны название системы, описание, версия 0.0.1 и статус разработки.
-
-Ссылки
-Репозиторий: https://github.com/le1asqq/mispisit-lab
-
-Образы (GHCR): https://github.com/le1asqq?tab=packages
