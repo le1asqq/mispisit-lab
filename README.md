@@ -2,40 +2,55 @@
 
 Проект по дисциплине «Методы и средства проектирования информационных систем». Система электронной очереди для сервисного центра.
 
-Все образы опубликованы в GitHub Container Registry (GHCR) и поддерживают платформы `linux/amd64` и `linux/arm64`.
+Все образы опубликованы в GitHub Container Registry (GHCR) и поддерживают платформы linux/amd64 и linux/arm64.
 
 ## Версии для запуска
 
 | Лабораторная работа | Тег образа | Что открывается |
 |---------------------|------------|-----------------|
-| **ЛР3** | `0.0.3` | Приложение и база данных (PostgreSQL) через `docker-compose`. Постоянное хранение данных. |
-| **ЛР2** | `0.0.2` | Три функции: создание талона, просмотр очереди, страница отказа. Данные в памяти. |
-| **ЛР1** | `0.0.1` | Первая страница: название, описание, версия и статус разработки. |
+| **ЛР3** | 0.0.3 | Приложение и база данных (PostgreSQL) через docker-compose. Постоянное хранение данных. |
+| **ЛР2** | 0.0.2 | Три функции: создание талона, просмотр очереди, страница отказа. Данные в памяти. |
+| **ЛР1** | 0.0.1 | Первая страница: название, описание, версия и статус разработки. |
 
 ---
 
 ## Запуск лабораторных работ
 
 ### ЛР3 (версия 0.0.3) — с базой данных
-```bash
-git clone -b lab3 https://github.com/le1asqq/mispisit-lab.git
-cd mispisit-lab
-docker compose up -d
+
+Для запуска нужен Docker Compose. Приложение и база данных (PostgreSQL) поднимаются вместе.
+
+    git clone -b lab3 https://github.com/le1asqq/mispisit-lab.git
+    cd mispisit-lab
+    docker compose up -d
+
+Откройте http://localhost:8080. После запуска список пустой. Создайте новый талон через форму — он сохранится в базе. Для проверки сохранности выполните docker compose down, затем снова docker compose up -d.
+
+---
 
 ### ЛР2 (версия 0.0.2) — данные в памяти
 
 Запускается одной командой без базы данных.
 
-```bash
-docker pull ghcr.io/le1asqq/mispisit-lab1:0.0.2
-docker run --rm -p 8080:8080 ghcr.io/le1asqq/mispisit-lab1:0.0.2
+    docker pull ghcr.io/le1asqq/mispisit-lab1:0.0.2
+    docker run --rm -p 8080:8080 ghcr.io/le1asqq/mispisit-lab1:0.0.2
+
 Откройте http://localhost:8080. Доступны три функции: получение талона, просмотр очереди, отказ в доступе.
+
+---
 
 ### ЛР1 (версия 0.0.1) — первая страница
 
 Запускается одной командой без базы данных.
 
-```bash
-docker pull ghcr.io/le1asqq/mispisit-lab1:0.0.1
-docker run --rm -p 8080:8080 ghcr.io/le1asqq/mispisit-lab1:0.0.1
+    docker pull ghcr.io/le1asqq/mispisit-lab1:0.0.1
+    docker run --rm -p 8080:8080 ghcr.io/le1asqq/mispisit-lab1:0.0.1
+
 Откройте http://localhost:8080. На странице видны название системы, описание, версия 0.0.1 и статус разработки.
+
+---
+
+## Ссылки
+
+- **Репозиторий:** https://github.com/le1asqq/mispisit-lab
+- **Образы (GHCR):** https://github.com/le1asqq?tab=packages
