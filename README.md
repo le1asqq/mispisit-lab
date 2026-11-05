@@ -30,6 +30,7 @@
 
 Запускается одной командой без базы данных.
 Код находится в ветке main.
+
     docker pull ghcr.io/le1asqq/mispisit-lab1:0.0.1
     docker run --rm -p 8080:8080 ghcr.io/le1asqq/mispisit-lab1:0.0.1
 
