@@ -27,7 +27,7 @@ public class TicketService
             Number = $"A-{101 + count}",
             ServiceName = serviceName,
             Status = "Ждёт",
-            CreatedAt = DateTime.Now
+            CreatedAt = DateTime.UtcNow
         };
         _db.Tickets.Add(ticket);
         _db.SaveChanges();
