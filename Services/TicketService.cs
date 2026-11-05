@@ -1,36 +1,36 @@
+using Microsoft.EntityFrameworkCore;
+using SmartQueue.Data;
 using SmartQueue.Models;
 
 namespace SmartQueue.Services;
 
 public class TicketService
 {
-    private readonly List<Ticket> _tickets = new();
-    private int _nextId = 1;
+    private readonly AppDbContext _db;
 
-    public TicketService()
+    public TicketService(AppDbContext db)
     {
-        // Демо данные
-        Add("Оформление документов");
-        Add("Получение справки");
-        Add("Консультация специалиста");
+        _db = db;
     }
 
-    public List<Ticket> GetAll() => _tickets;
+    public List<Ticket> GetAll() =>
+        _db.Tickets.OrderBy(t => t.Id).ToList();
 
-    public Ticket? GetById(int id) => _tickets.FirstOrDefault(t => t.Id == id);
+    public Ticket? GetById(int id) =>
+        _db.Tickets.Find(id);
 
     public Ticket Add(string serviceName)
     {
+        var count = _db.Tickets.Count();
         var ticket = new Ticket
         {
-            Id = _nextId,
-            Number = $"A-{100 + _nextId}",
+            Number = $"A-{101 + count}",
             ServiceName = serviceName,
             Status = "Ждёт",
             CreatedAt = DateTime.Now
         };
-        _tickets.Add(ticket);
-        _nextId++;
+        _db.Tickets.Add(ticket);
+        _db.SaveChanges();
         return ticket;
     }
 }
