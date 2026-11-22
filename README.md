@@ -56,4 +56,5 @@ docker compose up -d
 docker compose down
 docker compose up -d
 ```
-![Uploading image.png…]()
+<img width="1333" height="432" alt="image" src="https://github.com/user-attachments/assets/9bdd41ae-8576-46f0-a940-85b400cef92c" />
+
