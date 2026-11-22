@@ -1,5 +1,6 @@
 # SmartQueue — Система электронной очереди
 
+
 Проект разработан в рамках дисциплины «Методы и средства проектирования информационных систем». Система представляет собой веб-приложение для управления электронной очередью в сервисном центре.
 
 Все образы опубликованы в **GitHub Container Registry (GHCR)** и поддерживают платформы `linux/amd64` и `linux/arm64`. Docker автоматически выбирает нужную архитектуру.
@@ -24,3 +25,30 @@
 git clone -b lab3 https://github.com/le1asqq/mispisit-lab.git
 cd mispisit-lab
 docker compose up -d
+
+Проект по дисциплине «Методы и средства проектирования информационных систем». Система электронной очереди для сервисного центра.
+
+Все образы опубликованы в GitHub Container Registry  и поддерживают платформы linux/amd64 и linux/arm64.
+
+---
+
+## Запуск лабораторной работы
+
+### ЛР3 (версия 0.0.3) — база данных
+
+Для запуска нужен Docker Compose. Приложение и база данных (PostgreSQL) поднимаются вместе.
+
+    git clone -b lab3 https://github.com/le1asqq/mispisit-lab.git
+    cd mispisit-lab
+    docker compose up -d
+
+Откройте http://localhost:8080. После запуска список пустой. Создайте новый талон через форму — он сохранится в базе. Для проверки сохранности выполните docker compose down, затем снова docker compose up -d.
+
+---
+
+
+## Ссылки
+
+- **Репозиторий:** https://github.com/le1asqq/mispisit-lab
+- **Образы:** https://github.com/le1asqq?tab=packages
+

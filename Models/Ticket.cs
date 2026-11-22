@@ -6,5 +6,5 @@ public class Ticket
     public string Number { get; set; } = "";
     public string ServiceName { get; set; } = "";
     public string Status { get; set; } = "Ждёт";
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
