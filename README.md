@@ -27,6 +27,7 @@ Docker-образ: `ghcr.io/le1asqq/mispisit-lab1` (теги `0.0.1` … `0.0.4`
 docker pull ghcr.io/le1asqq/mispisit-lab1:0.0.1
 docker run --rm -p 8080:8080 ghcr.io/le1asqq/mispisit-lab1:0.0.1
 http://localhost:8080
+---
 
 ### Запуск — 0.0.2
 
