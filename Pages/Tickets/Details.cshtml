@@ -4,25 +4,42 @@
     ViewData["Title"] = "Талон";
 }
 
-@if (Model.Ticket == null)
-{
-    <div class="error">
-        <h2>Талон не найден</h2>
-        <p>Возможно, он был удалён или ещё не создан.</p>
-    </div>
-    <p style="margin-top: 25px;">
-        <a href="/queue" class="btn btn-gray">← Назад к очереди</a>
-    </p>
-}
-else
-{
-    <h2>Талон @Model.Ticket.Number</h2>
-    <div class="card">
-        <p><b>Услуга:</b> @Model.Ticket.ServiceName</p>
-        <p><b>Статус:</b> @Model.Ticket.Status</p>
-        <p><b>Создан:</b> @Model.Ticket.CreatedAt.ToString("dd.MM.yyyy HH:mm:ss")</p>
-    </div>
-    <p>
-        <a href="/queue" class="btn btn-gray">← Назад к очереди</a>
-    </p>
-}
+<div class="sq-panel">
+    @if (Model.Ticket == null)
+    {
+        <div class="sq-error mb-4">
+            <h2>Талон не найден</h2>
+            <p class="mb-0">Возможно, он был удалён или ещё не создан.</p>
+        </div>
+        <a href="/queue" class="sq-btn sq-btn-gray">← К очереди</a>
+    }
+    else
+    {
+        var t = Model.Ticket;
+        <div class="sq-page-head text-center mb-4">
+            <h2>Ваш талон</h2>
+            <p>Распечатайте экран или запомните номер</p>
+        </div>
+
+        <article class="sq-ticket-stub">
+            <p class="sq-ticket-org">Сервисный центр «УльяновскСервис»</p>
+            <p class="sq-ticket-caption">Порядковый номер</p>
+            <p class="sq-ticket-number">@t.Number</p>
+            <p class="sq-ticket-service">@t.ServiceName</p>
+            <p class="sq-ticket-hint">Ждите вызова на главном табло</p>
+            <p class="sq-ticket-status-line">Статус: <span class="sq-badge">@t.Status</span></p>
+            <p class="sq-ticket-reg-label">Время регистрации</p>
+            <div class="sq-ticket-datetime">
+                <span class="sq-ticket-time">@t.CreatedAt.ToString("HH:mm")</span>
+                <span class="sq-ticket-date">@t.CreatedAt.ToString("dd.MM.yyyy")</span>
+            </div>
+            <p class="sq-ticket-fine">При отсутствии клиента при вызове талон может быть аннулирован через 15 минут.</p>
+        </article>
+
+        <div class="sq-ticket-actions">
+            <a href="/queue" class="sq-btn sq-btn-blue sq-btn-sm">Посмотреть очередь</a>
+            &nbsp;
+            <a href="/" class="sq-btn sq-btn-gray sq-btn-sm">На главную</a>
+        </div>
+    }
+</div>

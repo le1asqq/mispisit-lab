@@ -4,38 +4,53 @@
     ViewData["Title"] = "Очередь";
 }
 
-<h2>Текущая очередь</h2>
-<p>Всего талонов: <b>@Model.Tickets.Count</b></p>
-
-@if (Model.Tickets.Count == 0)
-{
-    <div class="card">
-        <p>Очередь пуста. <a href="/tickets/new">Получите первый талон</a>.</p>
+<div class="sq-panel">
+    <div class="sq-page-head d-flex flex-wrap justify-content-between align-items-end gap-2">
+        <div>
+            <h2>Текущая очередь</h2>
+            <p>Активные талоны в сервисном центре</p>
+        </div>
+        <a href="/tickets/new" class="sq-btn sq-btn-sm">+ Новый талон</a>
     </div>
-}
-else
-{
-    <table>
-        <thead>
-            <tr>
-                <th>Номер</th>
-                <th>Услуга</th>
-                <th>Статус</th>
-                <th>Создан</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var t in Model.Tickets)
-            {
-                <tr>
-                    <td><b>@t.Number</b></td>
-                    <td>@t.ServiceName</td>
-                    <td>@t.Status</td>
-                    <td>@t.CreatedAt.ToString("HH:mm:ss")</td>
-                    <td><a href="/tickets/@t.Id" class="btn" style="padding: 6px 14px; font-size: 14px;">Открыть</a></td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+
+    <p class="mb-3">Всего в очереди: <strong class="text-teal">@Model.Tickets.Count</strong></p>
+
+    @if (Model.Tickets.Count == 0)
+    {
+        <div class="sq-empty">
+            <p class="mb-3 fs-5 fw-semibold text-secondary">Очередь пока пуста</p>
+            <p class="text-muted mb-3">Станьте первым посетителем сегодня</p>
+            <a href="/tickets/new" class="sq-btn">Получить талон</a>
+        </div>
+    }
+    else
+    {
+        <div class="sq-table-wrap">
+            <table class="sq-table">
+                <thead>
+                    <tr>
+                        <th>Номер</th>
+                        <th>Услуга</th>
+                        <th>Статус</th>
+                        <th>Время</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var t in Model.Tickets)
+                    {
+                        <tr>
+                            <td><strong class="text-dark">@t.Number</strong></td>
+                            <td>@t.ServiceName</td>
+                            <td><span class="sq-badge">@t.Status</span></td>
+                            <td class="text-muted">@t.CreatedAt.ToString("HH:mm")</td>
+                            <td class="text-end">
+                                <a href="/tickets/@t.Id" class="sq-btn sq-btn-blue sq-btn-sm">Открыть</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

@@ -4,29 +4,49 @@
     ViewData["Title"] = "Новый талон";
 }
 
-<h2>Получить талон</h2>
-<p>Выберите услугу и нажмите кнопку:</p>
+<div class="sq-panel">
+    <div class="sq-form-center">
+        <div class="sq-page-head">
+            <h2>Получить талон</h2>
+            <p>Выберите услугу и нажмите кнопку — номер появится на экране</p>
+        </div>
 
-<form method="post">
-    <div class="card">
-        <label><b>Услуга:</b></label><br />
-        <select name="serviceName">
-            <option value="Оформление документов">Оформление документов</option>
-            <option value="Получение справки">Получение справки</option>
-            <option value="Консультация специалиста">Консультация специалиста</option>
-        </select>
+        <form method="post">
+            <div class="sq-form-box">
+                <label for="serviceName">Услуга</label>
+                <select id="serviceName" name="serviceName">
+                    <option value="Оформление документов">Оформление документов</option>
+                    <option value="Получение справки">Получение справки</option>
+                    <option value="Консультация специалиста">Консультация специалиста</option>
+                </select>
+            </div>
+            <button type="submit" class="sq-btn">Получить талон</button>
+        </form>
     </div>
-    <button type="submit" class="btn btn-green">Получить талон</button>
-</form>
 
-@if (Model.CreatedTicket != null)
-{
-    <div class="card card-success">
-        <h3>Ваш талон: @Model.CreatedTicket.Number</h3>
-        <p><b>Услуга:</b> @Model.CreatedTicket.ServiceName</p>
-        <p>Ожидайте вызова на табло.</p>
-        <p>
-            <a href="/queue" class="btn">Посмотреть очередь</a>
-        </p>
-    </div>
-}
+    @if (Model.CreatedTicket != null)
+    {
+        var ct = Model.CreatedTicket;
+        <div class="sq-form-center mt-4">
+            <p class="sq-section-title mb-3">Ваш талон</p>
+            <article class="sq-ticket-stub">
+                <p class="sq-ticket-org">Сервисный центр «УльяновскСервис»</p>
+                <p class="sq-ticket-caption">Порядковый номер</p>
+                <p class="sq-ticket-number">@ct.Number</p>
+                <p class="sq-ticket-service">@ct.ServiceName</p>
+                <p class="sq-ticket-hint">Ждите вызова на главном табло</p>
+                <p class="sq-ticket-reg-label">Время регистрации</p>
+                <div class="sq-ticket-datetime">
+                    <span class="sq-ticket-time">@ct.CreatedAt.ToString("HH:mm")</span>
+                    <span class="sq-ticket-date">@ct.CreatedAt.ToString("dd.MM.yyyy")</span>
+                </div>
+                <p class="sq-ticket-fine">Ожидайте вызова на табло в зале ожидания.</p>
+            </article>
+            <div class="mt-3">
+                <a href="/tickets/@ct.Id" class="sq-btn sq-btn-sm">Открыть карточку</a>
+                &nbsp;
+                <a href="/queue" class="sq-btn sq-btn-blue sq-btn-sm">К очереди</a>
+            </div>
+        </div>
+    }
+</div>
