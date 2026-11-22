@@ -1,27 +1,59 @@
-# SmartQueue — Система электронной очереди
+# SmartQueue
 
-Проект по дисциплине «Методы и средства проектирования информационных систем». Система электронной очереди для сервисного центра.
+Система электронной очереди для сервисного центра «УльяновскСервис».
 
-Все образы опубликованы в GitHub Container Registry  и поддерживают платформы linux/amd64 и linux/arm64.
+**Лабораторная работа №3**  
+Дисциплина: методы и средства проектирования информационных систем  
+Студент: Васильева А.С., гр. ИСТбд-41
 
----
+## Содержание
 
-## Запуск лабораторной работы
+Те же страницы и функции, что в ЛР2. Данные сохраняются в **PostgreSQL**; запуск через **Docker Compose**. Версия **0.0.3**.
 
-### ЛР3 (версия 0.0.3) — база данных
+## Страницы
 
-Для запуска нужен Docker Compose. Приложение и база данных (PostgreSQL) поднимаются вместе.
+| Адрес | Назначение |
+|-------|------------|
+| `/` | Главная |
+| `/queue` | Список очереди |
+| `/tickets/new` | Создание талона |
+| `/tickets/{id}` | Карточка талона |
+| `/access-denied` | Отказ в доступе |
 
-    git clone -b lab3 https://github.com/le1asqq/mispisit-lab.git
-    cd mispisit-lab
-    docker compose up -d
+## Стек
 
-Откройте http://localhost:8080. После запуска список пустой. Создайте новый талон через форму — он сохранится в базе. Для проверки сохранности выполните docker compose down, затем снова docker compose up -d.
+- .NET 8, Razor Pages, Entity Framework Core
+- PostgreSQL 16
+- Docker, Docker Compose
 
----
+## Ветка и образ
 
+- Ветка: `lab3`
+- Образ в `docker-compose.yml`: `ghcr.io/le1asqq/mispisit-lab1:0.0.3` (linux/amd64, linux/arm64)
 
-## Ссылки
+Репозиторий: https://github.com/le1asqq/mispisit-lab  
+Пакеты: https://github.com/le1asqq?tab=packages
 
-- **Репозиторий:** https://github.com/le1asqq/mispisit-lab
-- **Образы:** https://github.com/le1asqq?tab=packages
+## Запуск
+
+```
+git clone -b lab3 https://github.com/le1asqq/mispisit-lab.git
+cd mispisit-lab
+docker compose up -d
+```
+
+Сайт: http://localhost:8080
+
+Проверка сохранения данных (том `dbdata` не удалять):
+
+```
+docker compose down
+docker compose up -d
+```
+
+Полный сброс базы (пустая очередь):
+
+```
+docker compose down -v
+docker compose up -d
+```
