@@ -1,0 +1,47 @@
+@page "/events"
+@model SmartQueue.Pages.Events.IndexModel
+@{
+    ViewData["Title"] = "События";
+}
+
+<div class="sq-panel">
+    <div class="sq-page-head mb-3">
+        <h2>События системы</h2>
+        <p>Уведомления о действиях в очереди</p>
+    </div>
+
+    @if (Model.Items.Count == 0)
+    {
+        <div class="sq-empty">
+            <p class="mb-2 fs-5 fw-semibold text-secondary">Событий пока нет</p>
+            <p class="text-muted mb-3">Создайте талон, чтобы появилась запись</p>
+            <a href="/tickets/new" class="sq-btn">Получить талон</a>
+        </div>
+    }
+    else
+    {
+        <div class="sq-table-wrap">
+            <table class="sq-table">
+                <thead>
+                    <tr>
+                        <th>Событие</th>
+                        <th>Талон</th>
+                        <th>Время</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var e in Model.Items)
+                    {
+                        <tr>
+                            <td>@e.EventType</td>
+                            <td>@e.TicketNumber</td>
+                            <td>@e.CreatedAt.ToLocalTime().ToString("HH:mm dd.MM.yyyy")</td>
+                            <td>@e.Status</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

@@ -7,10 +7,12 @@ namespace SmartQueue.Services;
 public class TicketService
 {
     private readonly AppDbContext _db;
+    private readonly EventService _events;
 
-    public TicketService(AppDbContext db)
+    public TicketService(AppDbContext db, EventService events)
     {
         _db = db;
+        _events = events;
     }
 
     public List<Ticket> GetAll() =>
@@ -31,6 +33,7 @@ public class TicketService
         };
         _db.Tickets.Add(ticket);
         _db.SaveChanges();
+        _events.RecordTicketCreated(ticket);
         return ticket;
     }
 }
